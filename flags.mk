@@ -1,7 +1,7 @@
 # Change these to match your configuration
 
-INCLUDES = /u/jpr/old_code/webgraph
-LIBS = /u/jpr/old_code/webgraph
+INCLUDES = $(CURDIR)
+LIBS = $(CURDIR)
 
 #LIBS = /u/jpr/workspace/cpp_webgraph
 

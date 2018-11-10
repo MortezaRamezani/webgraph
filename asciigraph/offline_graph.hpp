@@ -1,4 +1,4 @@
-/*               
+/*
  * Portions copyright (c) 2003-2007, Paolo Boldi and Sebastiano Vigna. Translation copyright (c) 2007, Jacob Ratkiewicz
  *
  *  This program is free software; you can redistribute it and/or modify it
@@ -24,6 +24,8 @@
 #include <fstream>
 #include <boost/shared_ptr.hpp>
 #include <boost/graph/adjacency_iterator.hpp>
+#include <boost/utility.hpp>
+#include <boost/tuple/tuple.hpp>
 
 #include "../webgraph/webgraph_vertex.hpp"
 #include "offline_edge_iterator.hpp"
@@ -32,39 +34,41 @@
 #include "edge.hpp"
 
 using namespace std;
+using namespace boost;
+using namespace boost::tuples;
 
 namespace webgraph { namespace ascii_graph {
 /*!
  * ascii_graph::offline_graph represents an offline ASCII graph (not loaded into memory).
- * 
+ *
  * Access to members of the graph is through getting an iterator, then working with the iterator.
  */
 class offline_graph {
-   
+
 private:
    // Only used by static factory method load.
    offline_graph();
-   
+
 protected:
    unsigned int n; // num vertices
    string filename; // file containing the graph
    unsigned int num_edges;
-   
+
 public:
    virtual ~offline_graph();
-        
+
    static offline_graph load( const string& basename );
-   
+
    typedef offline_edge_iterator edge_iterator;
    typedef offline_vertex_iterator vertex_iterator;
    typedef offline_vertex_iterator node_iterator;
 
    typedef vertex_descriptor vertex_type;
-   typedef edge edge_type; 
-        
+   typedef edge edge_type;
+
    pair<edge_iterator, edge_iterator> get_edge_iterator() const;
    pair<vertex_iterator, vertex_iterator> get_vertex_iterator(int from = 0) const;
-   
+
    unsigned int get_num_nodes() const {
       return n;
    }
