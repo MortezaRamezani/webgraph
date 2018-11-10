@@ -1,7 +1,7 @@
 # Change these to match your configuration
 
-INCLUDES = $(CURDIR)
-LIBS = $(CURDIR)
+INCLUDES = /home/morteza/Works/webgraph/
+LIBS = /home/morteza/Works/webgraph/
 
 #LIBS = /u/jpr/workspace/cpp_webgraph
 

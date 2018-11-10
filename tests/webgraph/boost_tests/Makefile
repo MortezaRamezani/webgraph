@@ -1,6 +1,6 @@
 include ../../../flags.mk
 
-linklibs = -lboost_regex -lboost_filesystem -lboost_program_options -lwebgraph
+linklibs = -lboost_program_options -lwebgraph -lboost_filesystem -lboost_system -lboost_regex
 
 all: print_graph test_incidence_and_adjacency bv_to_ascii compute_pagerank
 
@@ -20,4 +20,5 @@ clean:
 	rm -f *.o
 
 %.o: %.cpp
-	g++ $(INCLUDES) $(FLAGS) -c $<
+	# g++ $(INCLUDES) $(FLAGS) -c $<
+	g++ $(FLAGS) -c $<
