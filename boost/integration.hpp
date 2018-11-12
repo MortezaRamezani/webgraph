@@ -1,4 +1,4 @@
-/*               
+/*
  * Portions copyright (c) 2003-2007, Paolo Boldi and Sebastiano Vigna. Translation copyright (c) 2007, Jacob Ratkiewicz
  *
  *  This program is free software; you can redistribute it and/or modify it
@@ -22,7 +22,7 @@
 
 #include <boost/iterator/iterator_facade.hpp>
 #include <boost/graph/adjacency_iterator.hpp>
-#include <boost/property_map.hpp>
+#include <boost/property_map/property_map.hpp>
 #include <boost/graph/graph_concepts.hpp>
 
 #include <iostream>
@@ -57,14 +57,14 @@ namespace boost {
       //! These are from types.hpp
       typedef bvg_boost::vertex_descriptor vertex_descriptor;
       typedef bvg_boost::edge_descriptor edge_descriptor;
-      
+
       // Tags
       typedef directed_tag directed_category;
       typedef disallow_parallel_edge_tag edge_parallel_category;
       typedef bv_graph_traversal_category traversal_category;
 
       ////////////////////////////////////////////////////////////////////////////////
-      /*! 
+      /*!
        * vertex_iterator - required by Vertex List Graph concept
        */
       typedef webgraph::bv_graph::node_iterator vertex_iterator;
@@ -80,15 +80,15 @@ namespace boost {
       ////////////////////////////////////////////////////////////////////////////////
       // the following is what necessitates an online graph.
       ////////////////////////////////////////////////////////////////////////////////
-      
+
       ////////////////////////////////////////////////////////////////////////////////
-      /*! 
+      /*!
        * out_edge_iterator - required by incidence graph concept
        */
 
       typedef bvg_boost::out_edge_iterator out_edge_iterator;
       typedef unsigned int degree_size_type;
-      
+
       ////////////////////////////////////////////////////////////////////////////////
       /*! required for the adjacency graph concept
        */
@@ -115,9 +115,9 @@ namespace boost {
    bvg_traits::vertices_size_type num_vertices( const webgraph::bv_graph::graph& g ) {
       return static_cast<bvg_traits::vertices_size_type>(g.get_num_nodes());
    }
-                           
+
    ////////////////////////////////////////////////////////////////////////////////
-   /*! 
+   /*!
     * Support for EdgeListGraph concept (and Incidence Graph)
     */
    bvg_traits::vertex_descriptor source( bvg_traits::edge_descriptor e,
@@ -146,7 +146,7 @@ namespace boost {
     * Required for IncidenceGraph (and requires the backing graph to be online).
     */
    std::pair< bvg_traits::out_edge_iterator,
-              bvg_traits::out_edge_iterator> 
+              bvg_traits::out_edge_iterator>
    out_edges( const bvg_traits::vertex_descriptor& v,
               const webgraph::bv_graph::graph& g ) {
       typedef bvg_traits::out_edge_iterator oeitor;
@@ -161,7 +161,7 @@ namespace boost {
                                             const webgraph::bv_graph::graph& g ) {
       return g.outdegree( v );
    }
-   
+
    ////////////////////////////////////////////////////////////////////////////////
    /*!
     * Required for AdjacencyListGraph (requires backing graph to be online).
@@ -172,7 +172,7 @@ namespace boost {
                       const webgraph::bv_graph::graph& g ) {
       return g.get_successors( v );
    }
-   
+
 
    ////////////////////////////////////////////////////////////////////////////////
    /*!
@@ -180,7 +180,7 @@ namespace boost {
     * for syntactic correctness with the Boost stuff...
     */
    class vertex_index_accessor {}; // models readable property map somehow.
-   
+
    vertex_index_accessor get( boost::vertex_index_t, const webgraph::bv_graph::graph& g ) {
       return vertex_index_accessor();
    }
@@ -203,4 +203,3 @@ namespace boost {
 }
 
 #endif
-

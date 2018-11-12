@@ -1,4 +1,4 @@
-/*               
+/*
  *  Copyright (c) 2007, Jacob Ratkiewicz.
  *
  *  This program is free software; you can redistribute it and/or modify it
@@ -22,7 +22,7 @@
 /*
  * usage: given a compressed graph g (consisting of g.graph, g.offsets, and
  * g.properties), the following will run this program:
- * 
+ *
  * bv_to_ascii --source=g --dest=somethingelse
  *
  */
@@ -56,7 +56,7 @@ int main(int argc, char** argv) {
    using namespace std;
 
    ostringstream help_message;
-   
+
    help_message << "Usage:"
                 << "\t" << argv[0] << "--source=source --dest=dest\n"
                 << "Takes a BV-graph triplet (.graph, .properties, .offsets) and converts\n"
@@ -69,7 +69,7 @@ int main(int argc, char** argv) {
 
    desc.add_options()
       ("help,h", "Print this help message.")
-      ("src", 
+      ("src",
        po::value<string>(&source_basename),
        "Specify the source (BVgraph) file basename.")
       ("dest",
@@ -79,7 +79,7 @@ int main(int argc, char** argv) {
        "Use the EdgeListGraph aspect of the graph to do the conversion (for debugging).")
       ("ag", "Use the AdjacencyGraph aspect of the graph to do the conversion (default).")
       ;
-   
+
    po::variables_map vm;
    po::store( po::parse_command_line( argc, argv, desc ), vm );
 
@@ -97,7 +97,7 @@ int main(int argc, char** argv) {
    graph_ptr gp = webgraph::bv_graph::graph::load( source_basename );
    dest_basename += ".graph-txt";
    ofstream outfile( dest_basename.c_str() );
-   
+
    typedef boost::graph_traits< graph > bv_traits;
 
    if( vm.count( "elg" ) ) {
@@ -139,11 +139,11 @@ void do_conversion_edge( typename boost::shared_ptr<graph_type> gp,
    while( e != e_end ) {
       edge_t this_edge = *e;
       out << prev_edge->second;
-      
+
       if( this_edge->first == prev_edge->first ) {
          out << " ";
       } else {
-         out << 
+         out <<
       }
    }
 }
@@ -171,7 +171,7 @@ void do_conversion_vertex( boost::shared_ptr<graph_type> gp,
       // retrieve and print the successor list.
       adj_itor_t a, a_end;
       tie( a, a_end ) = boost::adjacent_vertices( *v, *gp );
-      
+
       if( a != a_end ) {
          out << *a++;
       }

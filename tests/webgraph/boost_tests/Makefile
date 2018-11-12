@@ -13,6 +13,9 @@ test_incidence_and_adjacency: test_incidence_and_adjacency.o
 bv_to_ascii: bv_to_ascii.o
 	g++ $(FLAGS) -o bv_to_ascii bv_to_ascii.o $(linklibs)
 
+bv_to_text: bv_to_text.o
+	g++ $(FLAGS) -o bv_to_text bv_to_text.o $(linklibs)
+
 compute_pagerank: compute_pagerank.o
 	g++ $(FLAGS) -o compute_pagerank compute_pagerank.o $(linklibs)
 
